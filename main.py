@@ -58,7 +58,7 @@ lr              = 1e-5
 
 model = build_model(layer_size, input_shape, regularizer, drop_size, num_of_classes, lr)
 model.summary()
-
+"""
 nb_epochs   = 100
 val_split   = 0.2
 batch_size  = 32
@@ -66,3 +66,10 @@ batch_size  = 32
 model.fit(train_data, train_labels, epochs=nb_epochs, validation_split=val_split, batch_size=batch_size, verbose=1)
 
 model.save("model" + str(time.time()) + ".h5")
+"""
+pred    = model.predict(test_data)
+preds   = pred.argmax(axis=-1)
+print(preds)
+results = pd.DataFrame(preds, columns=["Label"])
+
+results.to_csv("submission.csv", index_label="ImageId")
