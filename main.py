@@ -133,5 +133,5 @@ pred    = model.predict(test_data)
 preds   = pred.argmax(axis=-1)
 
 results = pd.DataFrame(preds, columns=["Label"])
-
+results.index += 1
 results.to_csv("submission" + str(time.time()) + ".csv", index_label="ImageId")
